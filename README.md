@@ -45,5 +45,5 @@ A simple and fun number guessing game built using HTML, CSS, and JavaScript. The
 
 1. Download or clone the repository:
    ```bash
-   git clone https://github.com/Mugil09/guess-the-number.git
+   git clone https://github.com/Mugil09/Project_Guess_The_Number.git  
 2. Open index.html in your browser.
