@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta tags for character encoding and responsive design -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing</title>
+
+    <!-- Importing fonts from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+    <!-- Linking external CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div>
+        <h1>Guess The Number From 1 to 10</h1>
+
+        <!-- Input field for user's number guess -->
+        <input placeholder="Enter a number" type="number" id="input_number">
+
+        <!-- Message display paragraph (e.g., win/loss/start status) -->
+        <p id="para_1">Start!</p>
+
+        <!-- Display remaining lives -->
+        <p id="para_2">Lives : 5</p>
+
+        <!-- Button that triggers the game logic -->
+        <button onclick="game()" id="check">Check</button>
+    </div>
+
+    <script>
+        // Get references to result and lives display elements
+        var para_1 = document.getElementById("para_1");
+        var para_2 = document.getElementById("para_2");
+
+        // Generate a random number between 1 and 10 (inclusive)
+        var random_number = Math.floor(Math.random() * 10) + 1;
+
+        // Set initial number of lives
+        var count = 5;
+
+        // Main game function that gets triggered on button click
+        function game() {
+            // Read and convert user input to an integer
+            var input_number = parseInt(document.getElementById("input_number").value);
+
+            // Case 1: User guessed the correct number
+            if (input_number === random_number) {
+                para_1.textContent = "Hurray! You Won🤩✨";
+                alert("You won🤩✨ refresh the page to play again🤗");
+                disablegame(); // Disable inputs after winning
+            }
+
+            // Case 2: Input is out of range
+            else if (input_number < 1 || input_number > 10) {
+                para_1.textContent = "Please Enter Number Between 1 to 10 😊";
+            }
+
+            // Case 3: Wrong guess
+            else {
+                para_1.textContent = "Oops, You Guessed Wrong. Try Again 😐";
+                count = count - 1; // Reduce one life
+                para_2.textContent = "Lives Remaining :💗 " + count;
+
+                // If no lives left, game over
+                if (count == 0) {
+                    alert("You Lost 🤕💔, Please Refresh The Page To Play Again");
+                    disablegame(); // Disable inputs after losing
+                }
+            }
+        }
+
+        // Function to disable input and button when game ends
+        function disablegame() {
+            document.getElementById("input_number").disabled = true; // Disable number input
+            document.getElementById("check").disabled = true; // Disable check button
+        }
+    </script>
+</body>
+
+</html>
